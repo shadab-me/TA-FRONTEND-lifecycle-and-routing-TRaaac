@@ -8,6 +8,8 @@ class App extends React.Component {
 
     this.state = {
       person: null,
+      active: null,
+      value: null,
     };
   }
   randomPerson = () => {
@@ -16,15 +18,54 @@ class App extends React.Component {
       .then((data) => this.setState({ person: data.results[0] }));
   };
 
-  displayDetail = (event) => {
-    console.log(event.target.value);
-    //const { value } = target;
-    /*switch (value) {
+  changeContent = ({ target }) => {
+    console.log(target);
+    switch (target.dataset.field) {
+      case "name":
+        let name = this.state.person.name.first;
+        this.setState({
+          value: name,
+          active: target.dataset.field,
+        });
+        break;
+      case "email":
+        let email = this.state.person.email;
+        this.setState({
+          value: email,
+          active: target.dataset.field,
+        });
+        break;
+      case "dob":
+        let dob = this.state.person.dob.age;
+        this.setState({
+          value: dob,
+          active: target.dataset.field,
+        });
+        break;
+      case "location":
+        let location = this.state.person.location.street.name;
+        this.setState({
+          value: location,
+          active: target.dataset.field,
+        });
+        break;
       case "phone":
-        console.log(value);
+        let phone = this.state.person.phone;
+        this.setState({
+          value: phone,
+          active: target.dataset.field,
+        });
+        break;
+      case "lock":
+        let lock = this.state.person.login.password;
+        this.setState({
+          value: lock,
+          active: target.dataset.field,
+        });
+        break;
+      default:
         break;
     }
-    */
   };
 
   componentDidMount() {
@@ -34,10 +75,12 @@ class App extends React.Component {
   }
 
   render() {
+    if (!this.state.person) return "loading";
     return (
       <div className="container">
-        <div className="row">
-          <div className="col-lg-3 col-sm-6">
+        <div className="row d-flex">
+          <div className="col-md-2"></div>
+          <div className="col-md-8">
             <div className="card hovercard">
               <div className="cardheader"></div>
               <div className="avatar">
@@ -48,44 +91,50 @@ class App extends React.Component {
               </div>
               <div className="info">
                 <div className="title">
-                  <h1>
-                    {this.state.person ? this.state.person.name.first : ""}
-                  </h1>
-                  <p>My Name</p>
+                  <p className="text-light">My {this.state.active || "Name"}</p>
+
+                  <h1>{this.state.value || this.state.person.name.first}</h1>
                 </div>
               </div>
-              <div className="bottom">
-                <a
-                  className="btn btn-primary btn-twitter btn-sm"
-                  value="user"
-                  onClick={this.displayDetail}
-                >
-                  <i className="fa fas-user"></i>
-                </a>
-                <a
-                  className="btn btn-danger btn-sm"
-                  rel="publisher"
-                  value="phone"
-                  onClick={this.displayDetail}
-                >
-                  <i className="fa fas-envelope-square" value="phone"></i>
-                </a>
-                <a
-                  className="btn btn-primary btn-sm"
-                  rel="publisher"
-                  value="phone"
-                >
-                  <i className="fa fas-phone"></i>
-                </a>
-                <a className="btn btn-warning btn-sm">
-                  <i className="fa fas-phone"></i>
-                </a>
+
+              <div className="btns">
+                <i
+                  onClick={this.changeContent}
+                  data-field="name"
+                  class="fas fa-user-alt"
+                ></i>
+                <i
+                  onClick={this.changeContent}
+                  data-field="email"
+                  class="fas fa-envelope-open"
+                ></i>
+                <i
+                  onClick={this.changeContent}
+                  data-field="dob"
+                  class="fas fa-calendar-times"
+                ></i>
+                <i
+                  onClick={this.changeContent}
+                  data-field="location"
+                  class="fas fa-map"
+                ></i>
+                <i
+                  onClick={this.changeContent}
+                  data-field="phone"
+                  class="fas fa-phone"
+                ></i>
+                <i
+                  onClick={this.changeContent}
+                  data-field="lock"
+                  class="fas fa-lock"
+                ></i>
               </div>
               <button className="btn btn-primary" onClick={this.randomPerson}>
                 {this.state.person ? "Random Person" : "loading..."}
               </button>
             </div>
           </div>
+          <div className="col-md-2"></div>
         </div>
       </div>
     );
