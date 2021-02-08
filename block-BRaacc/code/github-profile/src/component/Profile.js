@@ -23,33 +23,40 @@ class Profile extends React.Component {
     if (!profile) return <p>Loading..</p>;
     return (
       <div className="container">
-        <div className="card flex justify-content-center">
-          <div className="img-section">
-            <img
-              className="card-img-top rounded-circle responsive w-25"
-              src={profile.avatar_url}
-              alt="Card image cap"
-            />
-          </div>
-          <div className="card-body">
-            <a
-              href={`/users/${username}/repos`}
-              className="card-link btn btn-primary"
-            >
-              Public Repositories
-            </a>
-            <a
-              href={`/users/${username}/followers`}
-              className="card-link btn btn-primary"
-            >
-              Followers
-            </a>
-            <a
-              href={`/users/${username}/following`}
-              className="card-link btn btn-primary"
-            >
-              Following
-            </a>
+        <div className="card p-5">
+          <div className="row">
+            <div className="col-md-2">
+              <div className="img-section">
+                <img
+                  className="card-img-top rounded-circle responsive"
+                  src={profile.avatar_url}
+                  alt="Card image cap"
+                />
+              </div>
+            </div>
+            <div className="col-md-8">
+              <h5 className="text-primary">{profile.bio}</h5>
+              <div className="card-body">
+                <a
+                  href={`/users/${username}/repos`}
+                  className="card-link btn btn-primary"
+                >
+                  Public Repositories
+                </a>
+                <a
+                  href={`/users/${username}/followers`}
+                  className="card-link btn btn-primary"
+                >
+                  Followers
+                </a>
+                <a
+                  href={`/users/${username}/following`}
+                  className="card-link btn btn-primary"
+                >
+                  Following
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>

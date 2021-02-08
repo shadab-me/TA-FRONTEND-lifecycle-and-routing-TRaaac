@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 import React from "react";
 import ReactDOM from "react-dom";
-
 import App from "./App";
 import Follower from "./component/Follower";
 import Following from "./component/Following";
@@ -17,6 +16,7 @@ ReactDOM.render(
   <BrowserRouter>
     <div className="container">
       <Header />
+      <Route path="/" component={UserInput} exact />
       <div className="profile">
         <Route path="/users/:username" component={Profile}></Route>
       </div>
