@@ -8,7 +8,7 @@ class Follower extends React.Component {
     };
   }
   componentDidMount() {
-    let url = `https://api.github.com/users/${this.state.usernmae}/followers`;
+    let url = `https://api.github.com/users/${this.state.username}/followers`;
     fetch(url)
       .then((data) => data.json())
       .then((profiles) => {
