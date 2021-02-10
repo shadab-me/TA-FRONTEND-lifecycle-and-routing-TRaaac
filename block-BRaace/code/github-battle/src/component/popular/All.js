@@ -21,7 +21,7 @@ class All extends React.Component {
 
   render() {
     const repos = this.state.repos;
-    if (!repos) return "loading";
+    if (!repos) return <div className="container">loading...</div>;
     return (
       <div className="all-top-repos container d-flex flex-wrap justify-content-between mt-5">
         {repos.splice(0, 20).map((repo, index) => (

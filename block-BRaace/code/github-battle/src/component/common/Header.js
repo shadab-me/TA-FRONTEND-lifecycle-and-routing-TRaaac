@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -21,7 +20,7 @@ class Header extends React.Component {
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/javascript">
-                JavaScrip
+                JavaScript
               </a>
             </li>
           </ul>
