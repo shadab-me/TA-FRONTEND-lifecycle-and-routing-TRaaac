@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "./Card";
-class All extends React.Component {
+class Python extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -9,7 +9,7 @@ class All extends React.Component {
   }
   componentDidMount() {
     fetch(
-      "https://api.github.com/search/repositories?q=stars:%3E1+language:All&sort=stars&order=desc&type=Repositories"
+      "https://api.github.com/search/repositories?q=stars:%3E1+language:Python&sort=stars&order=desc&type=Repositories"
     )
       .then((data) => data.json())
       .then((repos) => {
@@ -21,7 +21,7 @@ class All extends React.Component {
 
   render() {
     const repos = this.state.repos;
-    if (!repos) return "loading";
+    if (!repos) return <div className="container">loading...</div>;
     return (
       <div className="all-top-repos container d-flex flex-wrap justify-content-between mt-5">
         {repos.splice(0, 20).map((repo, index) => (
@@ -32,4 +32,4 @@ class All extends React.Component {
   }
 }
 
-export default All;
+export default Python;
